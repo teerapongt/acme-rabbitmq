@@ -1,0 +1,6 @@
+@Acme.ConsumerApi_HostAddress = http://localhost:5017
+
+GET {{Acme.ConsumerApi_HostAddress}}/messages/5
+Accept: application/json
+
+###

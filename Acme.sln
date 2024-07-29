@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acme.PublisherApi", "src\Acme.PublisherApi\Acme.PublisherApi.csproj", "{1375FBAF-A885-4254-A9D6-25337C78EF00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acme.ConsumerApi", "src\Acme.ConsumerApi\Acme.ConsumerApi.csproj", "{7EEC2416-9CE7-48A4-97AE-9A1AC9E30A0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{1375FBAF-A885-4254-A9D6-25337C78EF00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1375FBAF-A885-4254-A9D6-25337C78EF00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1375FBAF-A885-4254-A9D6-25337C78EF00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EEC2416-9CE7-48A4-97AE-9A1AC9E30A0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EEC2416-9CE7-48A4-97AE-9A1AC9E30A0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EEC2416-9CE7-48A4-97AE-9A1AC9E30A0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EEC2416-9CE7-48A4-97AE-9A1AC9E30A0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
