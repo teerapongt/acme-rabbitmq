@@ -13,7 +13,7 @@ builder.Services.AddSwaggerGen();
 var rabbitMqOptions = builder.Configuration.GetRequiredSection(RabbitMqOptions.RabbitMq).Get<RabbitMqOptions>();
 builder.Services.AddMassTransit(x =>
 {
-    x.AddConsumer<MessageConsumer>();
+    x.AddConsumer<RecentMessageConsumer>();
 
     x.UsingRabbitMq((context, cfg) =>
     {
@@ -38,7 +38,7 @@ if (app.Environment.IsDevelopment())
 
 app.MapGet("/messages/{count:int}", (int count) =>
     {
-        var recentMessages = MessageConsumer.GetRecentMessages(count);
+        var recentMessages = RecentMessageConsumer.GetRecentMessages(count);
 
         return Results.Ok(recentMessages);
     })
