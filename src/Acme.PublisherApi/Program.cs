@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+using Acme.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +16,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapPost("/messages", () =>
+app.MapPost("/messages", (Message request) =>
     {
         Results.Ok();
     })

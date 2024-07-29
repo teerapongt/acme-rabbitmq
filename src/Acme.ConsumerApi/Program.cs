@@ -1,3 +1,5 @@
+using Acme.Contracts;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,8 +18,10 @@ if (app.Environment.IsDevelopment())
 
 app.MapGet("/messages/{numberOfRecentMessages}", (string numberOfRecentMessages) =>
     {
+        var message = new List<Message>();
         Results.Ok();
     })
+    .Produces(StatusCodes.Status200OK, typeof(List<Message>))
     .WithName("GetRecentMessages")
     .WithOpenApi();
 
