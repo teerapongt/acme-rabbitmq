@@ -1,0 +1,23 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  publisher-api:
+    build: ./src/Acme.PublisherApi/
+    ports:
+      - "5001:8080"
+    depends_on:
+      - rabbitmq
+
+  consumer-api:
+    build: ./src/Acme.ConsumerApi/
+    ports:
+      - "5002:8080"
+    depends_on:
+      - rabbitmq

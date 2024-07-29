@@ -1,0 +1,68 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  consumer-api:
+    build:
+      context: "/Users/teerapongt/RiderProjects/acme-rabbitmq/src/Acme.ConsumerApi"
+      dockerfile: "Dockerfile"
+      target: "base"
+      args:
+        BUILD_CONFIGURATION: "Debug"
+    command: []
+    entrypoint:
+    - "/opt/rider-debugger/linux-x64/JetBrains.Debugger.Worker"
+    - "--runtimeconfig"
+    - "/opt/rider-debugger/JetBrains.Debugger.Worker.runtimeconfig.json"
+    - "--mode=server"
+    - "--frontend-port=57100"
+    - "--backend-port=57300"
+    - "--timeout=60"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+      RIDER_DEBUGGER_LOG_DIR: "/var/opt/rider-debugger"
+      RESHARPER_LOG_CONF: "/etc/opt/rider-debugger/backend-log.xml"
+    image: "acme.consumerapi:dev"
+    ports:
+    - "127.0.0.1:57000:57100"
+    - "127.0.0.1:57200:57300"
+    volumes:
+    - "/Users/teerapongt/.nuget/packages:/home/app/.nuget/packages"
+    - "/Users/teerapongt/RiderProjects/acme-rabbitmq/src/Acme.ConsumerApi:/app:rw"
+    - "/Users/teerapongt/RiderProjects/acme-rabbitmq:/src:rw"
+    - "/Users/teerapongt/.local/share/JetBrains/RiderRemoteDebugger/2024.1.4/Linux64:/opt/rider-debugger"
+    - "/Users/teerapongt/Applications/Rider.app/Contents/bin:/etc/opt/rider-debugger/backend-log.xml"
+    - "/Users/teerapongt/Library/Logs/JetBrains/Rider2024.1/DebuggerWorker/JetBrains.Debugger.Worker.2024_7_29_14_52_53:/var/opt/rider-debugger:rw"
+    working_dir: "/app"
+  publisher-api:
+    build:
+      context: "/Users/teerapongt/RiderProjects/acme-rabbitmq/src/Acme.PublisherApi"
+      dockerfile: "Dockerfile"
+      target: "base"
+      args:
+        BUILD_CONFIGURATION: "Debug"
+    command: []
+    entrypoint:
+    - "/opt/rider-debugger/linux-x64/JetBrains.Debugger.Worker"
+    - "--runtimeconfig"
+    - "/opt/rider-debugger/JetBrains.Debugger.Worker.runtimeconfig.json"
+    - "--mode=server"
+    - "--frontend-port=57100"
+    - "--backend-port=57300"
+    - "--timeout=60"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+      RIDER_DEBUGGER_LOG_DIR: "/var/opt/rider-debugger"
+      RESHARPER_LOG_CONF: "/etc/opt/rider-debugger/backend-log.xml"
+    image: "acme.publisherapi:dev"
+    ports:
+    - "127.0.0.1:57001:57100"
+    - "127.0.0.1:57201:57300"
+    volumes:
+    - "/Users/teerapongt/.nuget/packages:/home/app/.nuget/packages"
+    - "/Users/teerapongt/RiderProjects/acme-rabbitmq/src/Acme.PublisherApi:/app:rw"
+    - "/Users/teerapongt/RiderProjects/acme-rabbitmq:/src:rw"
+    - "/Users/teerapongt/.local/share/JetBrains/RiderRemoteDebugger/2024.1.4/Linux64:/opt/rider-debugger"
+    - "/Users/teerapongt/Applications/Rider.app/Contents/bin:/etc/opt/rider-debugger/backend-log.xml"
+    - "/Users/teerapongt/Library/Logs/JetBrains/Rider2024.1/DebuggerWorker/JetBrains.Debugger.Worker.2024_7_29_14_52_53:/var/opt/rider-debugger:rw"
+    working_dir: "/app"
