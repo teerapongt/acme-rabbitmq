@@ -1,0 +1,6 @@
+@Acme.PublisherApi_HostAddress = http://localhost:5131
+
+POST {{Acme.PublisherApi_HostAddress}}/messages/
+Accept: application/json
+
+###
