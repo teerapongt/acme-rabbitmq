@@ -1,0 +1,10 @@
+services:
+  publisher-api:
+    image: "acme.publisherapi:latest"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+
+  consumer-api:
+    image: "acme.consumerapi:latest"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"

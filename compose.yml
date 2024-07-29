@@ -9,15 +9,23 @@ services:
       RABBITMQ_DEFAULT_PASS: guest
 
   publisher-api:
-    build: ./src/Acme.PublisherApi/
+    build:
+      context: ./
+      dockerfile: "src/Acme.PublisherApi/Dockerfile"
+    image: "acme.publisherapi:dev"
     ports:
       - "5001:8080"
-    depends_on:
-      - rabbitmq
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
 
   consumer-api:
-    build: ./src/Acme.ConsumerApi/
+    build:
+      context: ./
+      dockerfile: "src/Acme.ConsumerApi/Dockerfile"
+    image: "acme.consumerapi:dev"
     ports:
       - "5002:8080"
-    depends_on:
-      - rabbitmq
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
