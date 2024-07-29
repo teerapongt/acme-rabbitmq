@@ -1,5 +1,6 @@
 using Acme.Contracts;
 using Acme.PublisherApi.Contracts;
+using Acme.PublisherApi.Options;
 using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,19 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 // Add MassTransit with RabbitMQ
-var rabbitMqConfigurations = builder.Configuration.GetRequiredSection("RabbitMQ");
+var rabbitMqOptions = builder.Configuration.GetRequiredSection(RabbitMqOptions.RabbitMq).Get<RabbitMqOptions>();
 builder.Services.AddMassTransit(x =>
 {
     x.UsingRabbitMq((context, cfg) =>
     {
-        var host = rabbitMqConfigurations.GetValue<string>("Host");
-        var virtualHost = rabbitMqConfigurations.GetValue<string>("VirtualHost");
-        var username = rabbitMqConfigurations.GetValue<string>("Username") ?? string.Empty;
-        var password = rabbitMqConfigurations.GetValue<string>("Password") ?? string.Empty;
-        cfg.Host(host, virtualHost, h =>
+        cfg.Host(rabbitMqOptions!.Host, rabbitMqOptions.VirtualHost, h =>
         {
-            h.Username(username);
-            h.Password(password);
+            h.Username(rabbitMqOptions.Username);
+            h.Password(rabbitMqOptions.Password);
         });
 
         cfg.ConfigureEndpoints(context);
