@@ -15,6 +15,8 @@ public static class MessagesEndpoints
                     var response = await sender.Send(request, cancellationToken);
                     return TypedResults.Ok(response);
                 })
+            .Produces(StatusCodes.Status400BadRequest)
+            .Produces(StatusCodes.Status500InternalServerError)
             .WithName("PublishMessages")
             .WithSummary("Publishes a message")
             .WithOpenApi();
