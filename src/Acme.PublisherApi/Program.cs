@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 var rabbitMqOptions = builder.Configuration.GetRequiredSection(RabbitMqOptions.RabbitMq).Get<RabbitMqOptions>();
 builder.Services.AddMassTransit(x =>
 {
+    x.SetKebabCaseEndpointNameFormatter();
     x.UsingRabbitMq((context, cfg) =>
     {
         cfg.Host(rabbitMqOptions!.Host, rabbitMqOptions.VirtualHost, h =>
