@@ -51,3 +51,6 @@ if (app.Environment.IsDevelopment())
 app.MapMessagesEndpoints();
 
 app.Run();
+
+// For WebApplicationFactory tests
+public partial class Program;
