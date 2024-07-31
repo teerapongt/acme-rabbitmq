@@ -10,10 +10,27 @@ public static class MessagesEndpoints
             .WithTags("Messages");
 
         builder.MapPost("/",
-                async (ISender sender, PublishMessagesRequest request, CancellationToken cancellationToken) =>
+                async (ISender sender,IValidator<PublishMessagesRequest> validator, PublishMessagesRequest request, CancellationToken cancellationToken) =>
                 {
-                    var response = await sender.Send(request, cancellationToken);
-                    return TypedResults.Ok(response);
+                    app.Logger.LogDebug("Publishing message");
+                    try
+                    {
+                        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+
+                        if (!validationResult.IsValid)
+                        {
+                            app.Logger.LogWarning("Bad request to publish message");
+                            return Results.ValidationProblem(validationResult.ToDictionary());
+                        }
+
+                        var response = await sender.Send(request, cancellationToken);
+                        return TypedResults.Ok(response);
+                    }
+                    catch (Exception e)
+                    {
+                        app.Logger.LogError(e, "Failed to publish message");
+                        return Results.Problem(e.Message);
+                    }
                 })
             .Produces(StatusCodes.Status400BadRequest)
             .Produces(StatusCodes.Status500InternalServerError)
