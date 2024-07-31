@@ -1,9 +1,6 @@
 using System.Net.Http.Json;
 using Acme.ConsumerApi.Consumers;
 using Acme.Contracts;
-using MassTransit;
-using MassTransit.Testing;
-using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace Acme.IntegrationTests;
 
