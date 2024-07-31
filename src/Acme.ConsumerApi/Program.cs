@@ -1,14 +1,15 @@
 using Acme.ConsumerApi.Consumers;
 using Acme.ConsumerApi.Options;
 using Acme.Contracts;
-using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSerilog(cfg => cfg.ReadFrom.Configuration(builder.Configuration));
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 // Add MassTransit with RabbitMQ
 var rabbitMqOptions = builder.Configuration.GetRequiredSection(RabbitMqOptions.RabbitMq).Get<RabbitMqOptions>();
 builder.Services.AddMassTransit(x =>
@@ -28,6 +29,8 @@ builder.Services.AddMassTransit(x =>
 });
 
 var app = builder.Build();
+
+app.UseSerilogRequestLogging();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

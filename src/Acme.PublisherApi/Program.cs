@@ -34,7 +34,6 @@ builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-    // cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 });
 
 var app = builder.Build();

@@ -1,6 +1,5 @@
 using System.Collections.Concurrent;
 using Acme.Contracts;
-using MassTransit;
 
 namespace Acme.ConsumerApi.Consumers;
 
