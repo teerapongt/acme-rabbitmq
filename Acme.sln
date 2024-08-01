@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{65922001
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acme.IntegrationTests", "tests\Acme.IntegrationTests\Acme.IntegrationTests.csproj", "{226DF714-230D-4730-B7F0-7BBE6AA849A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acme.ConsumerApi.UnitTests", "tests\Acme.ConsumerApi.UnitTests\Acme.ConsumerApi.UnitTests.csproj", "{9E326B67-2A41-411D-94EF-1653EC417934}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +34,13 @@ Global
 		{226DF714-230D-4730-B7F0-7BBE6AA849A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{226DF714-230D-4730-B7F0-7BBE6AA849A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{226DF714-230D-4730-B7F0-7BBE6AA849A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E326B67-2A41-411D-94EF-1653EC417934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E326B67-2A41-411D-94EF-1653EC417934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E326B67-2A41-411D-94EF-1653EC417934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E326B67-2A41-411D-94EF-1653EC417934}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{226DF714-230D-4730-B7F0-7BBE6AA849A0} = {65922001-B69F-4181-AE29-87E65B706408}
+		{9E326B67-2A41-411D-94EF-1653EC417934} = {65922001-B69F-4181-AE29-87E65B706408}
 	EndGlobalSection
 EndGlobal
