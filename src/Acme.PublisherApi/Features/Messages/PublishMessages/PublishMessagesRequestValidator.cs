@@ -4,6 +4,6 @@ public class PublishMessagesRequestValidator : AbstractValidator<PublishMessages
 {
     public PublishMessagesRequestValidator()
     {
-        RuleFor(x=>x.Content).NotEmpty();
+        RuleFor(x => x.Content).NotEmpty();
     }
 }

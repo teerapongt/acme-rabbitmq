@@ -1,8 +1,11 @@
 using System.Reflection;
+
 using Acme.PublisherApi.Features.Messages;
 using Acme.PublisherApi.Options;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add Serilog
 builder.Services.AddSerilog(cfg => cfg.ReadFrom.Configuration(builder.Configuration));
 
 // Add services to the container.
@@ -31,10 +34,7 @@ builder.Services.AddMassTransit(x =>
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
 // Add MediatR
-builder.Services.AddMediatR(cfg =>
-{
-    cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-});
+builder.Services.AddMediatR(cfg => { cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()); });
 
 var app = builder.Build();
 
@@ -47,6 +47,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Map endpoints
 app.MapMessagesEndpoints();
 
 app.Run();
