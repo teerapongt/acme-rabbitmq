@@ -10,7 +10,11 @@ public static class MessagesEndpoints
             .WithTags("Messages");
 
         builder.MapPost("/",
-                async (ISender sender,IValidator<PublishMessagesRequest> validator, PublishMessagesRequest request, CancellationToken cancellationToken) =>
+                async (ISender sender,
+                    IValidator<PublishMessagesRequest> validator,
+                    PublishMessagesRequest request,
+                    CancellationToken cancellationToken
+                ) =>
                 {
                     app.Logger.LogDebug("Publishing message");
                     try
@@ -19,7 +23,10 @@ public static class MessagesEndpoints
 
                         if (!validationResult.IsValid)
                         {
-                            app.Logger.LogWarning("Bad request to publish message");
+                            app.Logger.LogWarning(
+                                "Bad request to publish message {@ValidationResult}",
+                                validationResult.ToDictionary()
+                            );
                             return Results.ValidationProblem(validationResult.ToDictionary());
                         }
 
