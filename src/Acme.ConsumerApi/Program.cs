@@ -1,8 +1,12 @@
+using System.Reflection;
+
 using Acme.ConsumerApi.Consumers;
+using Acme.ConsumerApi.Features.Messages;
 using Acme.ConsumerApi.Options;
-using Acme.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add Serilog
 builder.Services.AddSerilog(cfg => cfg.ReadFrom.Configuration(builder.Configuration));
 
 // Add services to the container.
@@ -28,6 +32,12 @@ builder.Services.AddMassTransit(x =>
     });
 });
 
+// Add FluentValidation
+builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+// Add MediatR
+builder.Services.AddMediatR(cfg => { cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()); });
+
 var app = builder.Build();
 
 app.UseSerilogRequestLogging();
@@ -39,14 +49,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/messages/{count:int}", (int count) =>
-    {
-        var recentMessages = RecentMessageConsumer.GetRecentMessages(count);
-
-        return Results.Ok(recentMessages);
-    })
-    .Produces<List<Message>>()
-    .WithName("GetRecentMessages")
-    .WithOpenApi();
+// Map endpoints
+app.MapMessagesEndpoints();
 
 app.Run();
